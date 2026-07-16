@@ -1,0 +1,19 @@
+{
+  "name": "LIFELINE Διαγνωστικό Εργαστήριο",
+  "short_name": "LIFELINE",
+  "description": "Ιδιωτικό Διαγνωστικό Εργαστήριο στην Τριανδρία Θεσσαλονίκης.",
+  "lang": "el-GR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f6f1ea",
+  "theme_color": "#154a87",
+  "icons": [
+    {
+      "src": "/LOGO_-_new_logo-removebg-preview.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
