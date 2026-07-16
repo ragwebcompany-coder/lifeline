@@ -2,7 +2,7 @@
    CLINICBRAIN — Premium template interactions (shared)
    Mirrors the Rosmarakis premium build: reveal-on-scroll, sticky header,
    scroll-spy, mobile drawer, services accordion, count-up, magnetic
-   buttons, ripple, cursor glow, live opening-hours, content lock.
+   buttons, ripple, cursor glow, live opening-hours.
    Opening hours can be overridden per page via window.CLINIC_SCHEDULE.
    ===================================================================== */
 (function(){
@@ -48,8 +48,11 @@
 
   /* ---- scroll-spy ---- */
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
-  var secs = navLinks.map(function(a){ return {a:a, sec:document.querySelector(a.getAttribute('href'))}; })
-                     .filter(function(o){ return o.sec; });
+  var secs = navLinks.map(function(a){
+    var href = a.getAttribute('href') || '';
+    if(href.charAt(0) !== '#') return null;
+    return {a:a, sec:document.querySelector(href)};
+  }).filter(function(o){ return o && o.sec; });
   if(secs.length){
     var spy = new IntersectionObserver(function(es){
       es.forEach(function(e){
@@ -214,17 +217,4 @@
   refreshStatus(); tickClock();
   setInterval(tickClock,1000);
   setInterval(refreshStatus,30000);
-
-  /* ---- content lock: right-click, selection, copy/paste, source shortcuts ---- */
-  var block = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
-  document.addEventListener('contextmenu', block);
-  ['copy','cut','paste','selectstart','dragstart'].forEach(function(ev){
-    document.addEventListener(ev, block);
-  });
-  document.addEventListener('keydown', function(e){
-    var k = (e.key || '').toLowerCase();
-    if(k === 'f12') return block(e);
-    if((e.ctrlKey || e.metaKey) && !e.shiftKey && ['c','x','v','u','s','p','a'].indexOf(k) > -1) return block(e);
-    if((e.ctrlKey || e.metaKey) && e.shiftKey && ['i','j','c'].indexOf(k) > -1) return block(e);
-  });
 })();
