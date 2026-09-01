@@ -32,7 +32,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/premium.css" />
-<link rel="preload" as="image" href="assets/hero-lab.webp" type="image/webp" fetchpriority="high" />
+<link rel="preload" as="image" href="/assets/hero-lab.webp" type="image/webp" fetchpriority="high" />
 <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
 <script type="application/ld+json">
 {
@@ -102,11 +102,14 @@
   :root{
     --accent:#154a87;--accent-deep:#0f3663;--gold:#c08a3e;
     --brand-red:#e31837;
-    /* Hero background — εργαστηριακή εικόνα (φωτεινή αριστερά για το κείμενο) */
-    --hero-bg: url('assets/hero-lab.jpg');
   }
-  @supports (background-image: image-set(url('assets/hero-lab.webp') type('image/webp'))){
-    :root{ --hero-bg: image-set(url('assets/hero-lab.webp') type('image/webp'), url('assets/hero-lab.jpg') type('image/jpeg')); }
+  /* Hero background — εργαστηριακή εικόνα (φωτεινή αριστερά για το κείμενο).
+     Δηλώνεται απευθείας στο .hero (όχι μέσω --hero-bg): τα σχετικά url() μέσα σε
+     custom property λύνονται ως προς το premium.css και έσπαγαν σε /assets/assets/.
+     Οι διαδρομές είναι απόλυτες από τη ρίζα για να μην υπάρχει καμία αμφισημία. */
+  .hero{ background-image:url('/assets/hero-lab.jpg') }
+  @supports (background-image: image-set(url('/assets/hero-lab.webp') type('image/webp'))){
+    .hero{ background-image: image-set(url('/assets/hero-lab.webp') type('image/webp'), url('/assets/hero-lab.jpg') type('image/jpeg')) }
   }
   @media (max-width:560px){
     /* Σε κινητό το κείμενο είναι κεντραρισμένο — κάθετο πέπλο αντί για πλάγιο */
