@@ -32,6 +32,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/premium.css" />
+<link rel="preload" as="image" href="assets/hero-lab.webp" type="image/webp" fetchpriority="high" />
 <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
 <script type="application/ld+json">
 {
@@ -101,8 +102,17 @@
   :root{
     --accent:#154a87;--accent-deep:#0f3663;--gold:#c08a3e;
     --brand-red:#e31837;
-    /* Hero χωρίς φωτογραφία — διακριτικό brand gradient (η φωτογραφία θα μπει όταν τη στείλει ο ιατρός) */
-    --hero-bg: radial-gradient(circle at 85% 15%, rgba(227, 24, 55, 0.04) 0%, transparent 40%), radial-gradient(circle at 20% 85%, rgba(21, 74, 135, 0.06) 0%, transparent 50%), linear-gradient(135deg, #f4f7fa 0%, #e8edf3 52%, #d6e2ee 100%);
+    /* Hero background — εργαστηριακή εικόνα (φωτεινή αριστερά για το κείμενο) */
+    --hero-bg: url('assets/hero-lab.jpg');
+  }
+  @supports (background-image: image-set(url('assets/hero-lab.webp') type('image/webp'))){
+    :root{ --hero-bg: image-set(url('assets/hero-lab.webp') type('image/webp'), url('assets/hero-lab.jpg') type('image/jpeg')); }
+  }
+  @media (max-width:560px){
+    /* Σε κινητό το κείμενο είναι κεντραρισμένο — κάθετο πέπλο αντί για πλάγιο */
+    .hero{ background-position:72% center }
+    .hero::before{ display:block;
+      background:linear-gradient(180deg, rgba(255,255,255,.93) 0%, rgba(255,255,255,.9) 58%, rgba(255,255,255,.84) 100%) }
   }
   
   /* Inject Red Accents */
@@ -172,7 +182,7 @@
 <header class="topbar" id="topbar">
   <div class="shell nav">
     <a class="brand" href="#top" aria-label="LIFELINE Διαγνωστικό Εργαστήριο">
-      <img src="LOGO_-_new_logo-removebg-preview.png" alt="LIFELINE Διαγνωστικό Εργαστήριο" style="height: 64px; width: auto; object-fit: contain;" />
+      <img src="LOGO_-_new_logo-removebg-preview.png" alt="LIFELINE Διαγνωστικό Εργαστήριο" style="width: auto; object-fit: contain;" />
     </a>
         <nav class="nav-links">
       <a href="index.html">Αρχική</a>
@@ -244,15 +254,7 @@
 
 <section class="section about" id="about">
   <div class="shell">
-    <div class="about-grid">
-      <div class="about-figure reveal">
-        <!-- Φωτογραφία ιατρού/εργαστηρίου: αντικαταστήστε το .figure-ph με πραγματική εικόνα όταν αποσταλεί -->
-        <div class="figure-ph" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="9" r="1.6"/><path d="M21 16l-5-5L5 21"/></svg>
-          <span>Φωτογραφία σύντομα</span>
-        </div>
-        <div class="tag"><strong>MD</strong><span>Επιστ. Υπεύθυνος</span></div>
-      </div>
+    <div class="about-grid about-grid--solo">
       <div class="about-body">
         <div class="kicker"><span class="num">01</span> Το Εργαστήριο</div>
         <h2>LIFELINE <em>Διαγνωστικό Εργαστήριο</em></h2>
@@ -293,7 +295,7 @@
       </article>
       <article class="svc-row reveal">
         <div class="svc-head"><span class="no">04</span><h3>Γυναικολογικοί Έλεγχοι & IVF</h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></div>
-        <div class="svc-body"><div class="svc-body-inner">Εξειδικευμένος έλεγχος γυναικείας υγείας και αναπαραγωγής — HPV DNA, HPV mRNA Aptima, μικροβίωμα ενδομητρίου, μοριακό panel STDs, AMH, θρομβοφιλία, NK cells και κατακερματισμός DNA σπέρματος.<div class="feats"><span>HPV DNA</span><span>HPV mRNA</span><span>Μικροβίωμα ενδομητρίου</span><span>STDs PCR</span><span>AMH</span><span>IVF</span></div></div></div>
+        <div class="svc-body"><div class="svc-body-inner">Εξειδικευμένος έλεγχος γυναικείας υγείας και αναπαραγωγής — HPV DNA, HPV mRNA, μικροβίωμα ενδομητρίου, μοριακό panel STDs, AMH, θρομβοφιλία, NK cells και κατακερματισμός DNA σπέρματος.<div class="feats"><span>HPV DNA</span><span>HPV mRNA</span><span>Μικροβίωμα ενδομητρίου</span><span>STDs PCR</span><span>AMH</span><span>IVF</span></div></div></div>
       </article>
     </div>
   </div>
@@ -390,18 +392,13 @@
         <div class="kicker"><span class="num">05</span> Περιοχές Εξυπηρέτησης</div>
         <h2>Διαγνωστικές εξετάσεις <em>στη Θεσσαλονίκη</em></h2>
       </div>
-      <p class="lead">Εξυπηρετούμε Τριανδρία, Τούμπα, Κέντρο Θεσσαλονίκης και γύρω περιοχές με εργαστηριακές, κυτταρολογικές και μοριακές εξετάσεις.</p>
+      <p class="lead">Εξυπηρετούμε την Τριανδρία, το Κέντρο Θεσσαλονίκης και τις γύρω περιοχές με εργαστηριακές, κυτταρολογικές και μοριακές εξετάσεις.</p>
     </div>
     <div class="info-grid">
       <article class="info-card reveal">
         <h3>Τριανδρία</h3>
-        <p>Μικροβιολογικό και μοριακό εργαστήριο στην Ελευθερίας 34, για αιματολογικές, βιοχημικές, ορμονολογικές και μοριακές εξετάσεις.</p>
+        <p>Μικροβιολογικό και μοριακό εργαστήριο στην Ελευθερίας 34, για αιματολογικές, βιοχημικές, ορμονολογικές και μοριακές εξετάσεις, με δυνατότητα κατ' οίκον αιμοληψίας κατόπιν ραντεβού.</p>
         <a class="btn primary" href="perioches/diagnostiko-ergastirio-triandria.html">Διαγνωστικό Τριανδρία</a>
-      </article>
-      <article class="info-card reveal">
-        <h3>Τούμπα</h3>
-        <p>Άμεση εξυπηρέτηση για κατοίκους Άνω και Κάτω Τούμπας, με δυνατότητα κατ' οίκον αιμοληψίας κατόπιν τηλεφωνικού ραντεβού.</p>
-        <a class="btn primary" href="perioches/aimatologikes-exetaseis-toumpa.html">Εξετάσεις Τούμπα</a>
       </article>
       <article class="info-card reveal">
         <h3>Κέντρο Θεσσαλονίκης</h3>
@@ -506,12 +503,12 @@
   <div class="shell">
     <div class="foot-top">
       <div class="foot-brand">
-        <img src="LOGO_-_new_logo-removebg-preview.png" alt="LIFELINE Διαγνωστικό Εργαστήριο" style="height: 60px; width: auto; object-fit: contain; margin-bottom: 12px;" />
+        <img src="LOGO_-_new_logo-removebg-preview.png" alt="LIFELINE Διαγνωστικό Εργαστήριο" style="width: auto; object-fit: contain; margin-bottom: 12px;" />
         <span>Ιδιωτικό Διαγνωστικό Εργαστήριο · Βιοπαθολογία · Θεσσαλονίκη</span>
       </div>
       <nav class="foot-nav">
         <a href="index.html">Αρχική</a><a href="about.html">Το Εργαστήριο</a><a href="services.html">Υπηρεσίες</a><a href="checkup.html">Πακέτα</a><a href="instructions.html">Οδηγίες</a><a href="perioches/index.html">Περιοχές</a><a href="contact.html">Επικοινωνία</a>
-      </nav>
+      <a href="oikonomikes-katastaseis.html">Οικονομικές Καταστάσεις</a></nav>
     </div>
     <div class="foot-legal">
       <a href="legal/terms.html">Όροι Χρήσης</a><span class="sep">·</span>
