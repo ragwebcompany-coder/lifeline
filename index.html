@@ -18,21 +18,23 @@
 <meta property="og:description" content="Αιματολογικές, βιοχημικές, ορμονολογικές, κυτταρολογικές και μοριακές εξετάσεις σε Τριανδρία, Τούμπα και Κέντρο Θεσσαλονίκης." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.lifelinelab.gr/" />
-<meta property="og:image" content="https://www.lifelinelab.gr/LOGO_-_new_logo-removebg-preview.png" />
+<meta property="og:image" content="https://www.lifelinelab.gr/assets/og-image.png" />
 <meta property="og:image:alt" content="Λογότυπο LIFELINE Διαγνωστικό Εργαστήριο" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Διαγνωστικό Εργαστήριο Τριανδρία Θεσσαλονίκη | LIFELINE" />
 <meta name="twitter:description" content="Αιματολογικές, βιοχημικές, ορμονολογικές, κυτταρολογικές και μοριακές εξετάσεις σε Τριανδρία, Τούμπα και Κέντρο Θεσσαλονίκης." />
-<meta name="twitter:image" content="https://www.lifelinelab.gr/LOGO_-_new_logo-removebg-preview.png" />
+<meta name="twitter:image" content="https://www.lifelinelab.gr/assets/og-image.png" />
 <link rel="canonical" href="https://www.lifelinelab.gr/" />
-<link rel="icon" href="LOGO_-_new_logo-removebg-preview.png" />
-<link rel="apple-touch-icon" href="LOGO_-_new_logo-removebg-preview.png" />
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+<link rel="icon" href="assets/favicon-48.png" sizes="48x48" type="image/png" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180" />
 <link rel="manifest" href="site.webmanifest" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/premium.css" />
-<link rel="preload" as="image" href="/assets/hero-lab.webp" type="image/webp" fetchpriority="high" />
+<link rel="preload" as="image" href="assets/hero-desktop.webp" type="image/webp" media="(min-width:769px)" fetchpriority="high" />
+<link rel="preload" as="image" href="assets/hero-mobile.webp" type="image/webp" media="(max-width:768px)" fetchpriority="high" />
 <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
 <script type="application/ld+json">
 {
@@ -42,8 +44,8 @@
   "name": "LIFELINE Ιδιωτικό Διαγνωστικό Εργαστήριο Ιατρική ΙΚΕ",
   "alternateName": "LIFELINE Διαγνωστικό Εργαστήριο",
   "url": "https://www.lifelinelab.gr/",
-  "logo": "https://www.lifelinelab.gr/LOGO_-_new_logo-removebg-preview.png",
-  "image": "https://www.lifelinelab.gr/LOGO_-_new_logo-removebg-preview.png",
+  "logo": "https://www.lifelinelab.gr/assets/logo.png",
+  "image": "https://www.lifelinelab.gr/assets/og-image.png",
   "description": "Ιδιωτικό διαγνωστικό εργαστήριο στην Τριανδρία Θεσσαλονίκης με τμήματα Βιοπαθολογίας, Κυτταρολογίας και Μοριακής Γενετικής.",
   "telephone": "+302311218444",
   "email": "info@lifelinelab.gr",
@@ -106,16 +108,26 @@
   /* Hero background — εργαστηριακή εικόνα (φωτεινή αριστερά για το κείμενο).
      Δηλώνεται απευθείας στο .hero (όχι μέσω --hero-bg): τα σχετικά url() μέσα σε
      custom property λύνονται ως προς το premium.css και έσπαγαν σε /assets/assets/.
-     Οι διαδρομές είναι απόλυτες από τη ρίζα για να μην υπάρχει καμία αμφισημία. */
-  .hero{ background-image:url('/assets/hero-lab.jpg') }
-  @supports (background-image: image-set(url('/assets/hero-lab.webp') type('image/webp'))){
-    .hero{ background-image: image-set(url('/assets/hero-lab.webp') type('image/webp'), url('/assets/hero-lab.jpg') type('image/jpeg')) }
+     Οι διαδρομές είναι ΣΧΕΤΙΚΕΣ ως προς αυτό το αρχείο, ώστε η εικόνα να
+     εμφανίζεται και online και όταν ανοίγεις το index.html τοπικά με διπλό κλικ. */
+  /* Η νέα hero εικόνα έχει ήδη τυπωμένη γραμμή ΗΚΓ· η animated .ecg-wrap
+     θα εμφανιζόταν δεύτερη φορά, οπότε αποκρύπτεται μόνο στην αρχική.
+     Για επαναφορά: σβήσε την επόμενη γραμμή. */
+  .ecg-wrap{ display:none }
+  .hero{ background-image:url('assets/hero-desktop.jpg') }
+  @supports (background-image: image-set(url('assets/hero-desktop.webp') type('image/webp'))){
+    .hero{ background-image: image-set(url('assets/hero-desktop.webp') type('image/webp'), url('assets/hero-desktop.jpg') type('image/jpeg')) }
   }
-  @media (max-width:560px){
-    /* Σε κινητό το κείμενο είναι κεντραρισμένο — κάθετο πέπλο αντί για πλάγιο */
-    .hero{ background-position:72% center }
+  @media (max-width:768px){
+    /* Κινητό: κάθετη (portrait) εκδοχή της εικόνας, κεντραρισμένη */
+    .hero{ background-image:url('assets/hero-mobile.jpg'); background-position:center center }
+    @supports (background-image: image-set(url('assets/hero-mobile.webp') type('image/webp'))){
+      .hero{ background-image: image-set(url('assets/hero-mobile.webp') type('image/webp'), url('assets/hero-mobile.jpg') type('image/jpeg')) }
+    }
+    /* Κινητό: κάθετο πέπλο — σχεδόν λευκό πίσω από το κείμενο (πάνω), ώστε να
+       διαβάζεται, και πιο διάφανο προς τα κάτω ώστε να φαίνεται η φωτογραφία. */
     .hero::before{ display:block;
-      background:linear-gradient(180deg, rgba(255,255,255,.93) 0%, rgba(255,255,255,.9) 58%, rgba(255,255,255,.84) 100%) }
+      background:linear-gradient(180deg, rgba(255,255,255,.95) 0%, rgba(255,255,255,.9) 48%, rgba(255,255,255,.62) 74%, rgba(255,255,255,.3) 100%) }
   }
   
   /* Inject Red Accents */
@@ -169,7 +181,7 @@
     border-bottom:1px solid var(--line)}
   .equip-media svg{width:46px;height:46px;opacity:.5}
   .equip-media span{font-size:12px;letter-spacing:.05em;font-weight:600;opacity:.7}
-  .equip-img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;border-bottom:1px solid var(--line)}
+  .equip-img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;display:block;border-bottom:1px solid var(--line)}
   .equip-info{padding:26px 26px 30px}
   .equip-info .enum{font-family:"Fraunces",serif;font-style:italic;color:var(--accent);font-size:14px}
   .equip-info h4{font-family:"Fraunces",serif;font-weight:500;font-size:20px;margin:8px 0 10px;color:var(--ink);line-height:1.25}
@@ -185,7 +197,7 @@
 <header class="topbar" id="topbar">
   <div class="shell nav">
     <a class="brand" href="#top" aria-label="LIFELINE Διαγνωστικό Εργαστήριο">
-      <img src="LOGO_-_new_logo-removebg-preview.png" alt="LIFELINE Διαγνωστικό Εργαστήριο" style="width: auto; object-fit: contain;" />
+      <img width="1250" height="528" decoding="async" src="assets/logo.png" srcset="assets/logo.png 1x, assets/logo@2x.png 2x" alt="LIFELINE Διαγνωστικό Εργαστήριο" />
     </a>
         <nav class="nav-links">
       <a href="index.html">Αρχική</a>
@@ -333,11 +345,11 @@
         <div class="kicker"><span class="num">04</span> Εξοπλισμός Εργαστηρίου</div>
         <h2>Σύγχρονα <em>μηχανήματα</em></h2>
       </div>
-      <p class="lead">Επενδύουμε σε αξιόπιστα συστήματα τελευταίας τεχνολογίας για ακριβή και αναπαραγώγιμα αποτελέσματα. Οι φωτογραφίες του εξοπλισμού θα προστεθούν σύντομα.</p>
+      <p class="lead">Επενδύουμε σε αξιόπιστα συστήματα τελευταίας τεχνολογίας για ακριβή και αναπαραγώγιμα αποτελέσματα.</p>
     </div>
     <div class="equip-grid">
       <article class="equip-card reveal">
-        <img class="equip-img" src="assets/sacycler-96.png" alt="SaCycler-96 Real-Time PCR System" loading="lazy" />
+        <picture><source srcset="assets/sacycler-96.webp" type="image/webp" /><img class="equip-img" src="assets/sacycler-96.jpg" width="1200" height="750" alt="SaCycler-96 Real-Time PCR System" loading="lazy" decoding="async" /></picture>
         <div class="equip-info">
           <span class="enum">01</span>
           <h4>SaCycler-96 Real-Time PCR System</h4>
@@ -345,7 +357,7 @@
         </div>
       </article>
       <article class="equip-card reveal">
-        <img class="equip-img" src="assets/slan-96s.png" alt="SLAN-96S Real-Time PCR System" loading="lazy" />
+        <picture><source srcset="assets/slan-96s.webp" type="image/webp" /><img class="equip-img" src="assets/slan-96s.jpg" width="1200" height="750" alt="SLAN-96S Real-Time PCR System" loading="lazy" decoding="async" /></picture>
         <div class="equip-info">
           <span class="enum">02</span>
           <h4>SLAN-96S Real-Time PCR System</h4>
@@ -353,7 +365,7 @@
         </div>
       </article>
       <article class="equip-card reveal">
-        <img class="equip-img" src="assets/cfx96.png" alt="Bio-Rad CFX96 Real-Time PCR Detection System" loading="lazy" />
+        <picture><source srcset="assets/cfx96.webp" type="image/webp" /><img class="equip-img" src="assets/cfx96.jpg" width="1200" height="750" alt="Bio-Rad CFX96 Real-Time PCR Detection System" loading="lazy" decoding="async" /></picture>
         <div class="equip-info">
           <span class="enum">03</span>
           <h4>Bio-Rad CFX96 Real-Time PCR Detection System</h4>
@@ -361,7 +373,7 @@
         </div>
       </article>
       <article class="equip-card reveal">
-        <img class="equip-img" src="assets/magcore-plus-ii.png" alt="MagCore Plus II Automated Nucleic Acid Extractor" loading="lazy" />
+        <picture><source srcset="assets/magcore-plus-ii.webp" type="image/webp" /><img class="equip-img" src="assets/magcore-plus-ii.jpg" width="1200" height="750" alt="MagCore Plus II Automated Nucleic Acid Extractor" loading="lazy" decoding="async" /></picture>
         <div class="equip-info">
           <span class="enum">04</span>
           <h4>MagCore® Plus II Automated Nucleic Acid Extractor</h4>
@@ -369,7 +381,7 @@
         </div>
       </article>
       <article class="equip-card reveal">
-        <img class="equip-img" src="assets/mole-extractor.png" alt="Mole Automated Nucleic Acid Extractor" loading="lazy" />
+        <picture><source srcset="assets/mole-extractor.webp" type="image/webp" /><img class="equip-img" src="assets/mole-extractor.jpg" width="1200" height="750" alt="Mole Automated Nucleic Acid Extractor" loading="lazy" decoding="async" /></picture>
         <div class="equip-info">
           <span class="enum">05</span>
           <h4>Mole Automated Nucleic Acid Extractor</h4>
@@ -377,7 +389,7 @@
         </div>
       </article>
       <article class="equip-card reveal">
-        <img class="equip-img" src="assets/pcr-hood.png" alt="PCR Hood UV-Cleaner Box" loading="lazy" />
+        <picture><source srcset="assets/pcr-hood.webp" type="image/webp" /><img class="equip-img" src="assets/pcr-hood.jpg" width="1200" height="750" alt="PCR Hood UV-Cleaner Box" loading="lazy" decoding="async" /></picture>
         <div class="equip-info">
           <span class="enum">06</span>
           <h4>PCR Hood (UV-Cleaner Box)</h4>
@@ -506,7 +518,7 @@
   <div class="shell">
     <div class="foot-top">
       <div class="foot-brand">
-        <img src="LOGO_-_new_logo-removebg-preview.png" alt="LIFELINE Διαγνωστικό Εργαστήριο" style="width: auto; object-fit: contain; margin-bottom: 12px;" />
+        <img width="1250" height="528" decoding="async" src="assets/logo.png" srcset="assets/logo.png 1x, assets/logo@2x.png 2x" alt="LIFELINE Διαγνωστικό Εργαστήριο" style="margin-bottom:12px" />
         <span>Ιδιωτικό Διαγνωστικό Εργαστήριο · Βιοπαθολογία · Θεσσαλονίκη</span>
       </div>
       <nav class="foot-nav">
