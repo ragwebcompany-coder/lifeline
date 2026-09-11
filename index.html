@@ -186,7 +186,19 @@
   .equip-info .enum{font-family:"Fraunces",serif;font-style:italic;color:var(--accent);font-size:14px}
   .equip-info h4{font-family:"Fraunces",serif;font-weight:500;font-size:20px;margin:8px 0 10px;color:var(--ink);line-height:1.25}
   .equip-info p{font-size:14px;color:var(--ink-2);margin:0;line-height:1.6}
-  @media(max-width:760px){.equip-grid{grid-template-columns:1fr}}
+  .equip-info .equip-specs{margin:14px 0 0;padding-left:18px;font-size:14px;color:var(--ink-2);line-height:1.6}
+  .equip-info .equip-specs li{margin:5px 0}
+  .equip-info .equip-specs b{color:var(--ink);font-weight:600}
+  /* Μονή τελευταία κάρτα: πιάνει όλο το πλάτος, φωτογραφία αριστερά / κείμενο δεξιά */
+  .equip-card--wide{grid-column:1/-1;flex-direction:row;align-items:stretch}
+  .equip-card--wide picture{flex:0 0 44%;display:flex;background:#fff;border-right:1px solid var(--line)}
+  .equip-card--wide .equip-img{height:100%;aspect-ratio:auto;object-fit:contain;border-bottom:0}
+  .equip-card--wide .equip-info{flex:1;padding:30px 34px 34px}
+  @media(max-width:760px){.equip-grid{grid-template-columns:1fr}
+    .equip-card--wide{flex-direction:column}
+    .equip-card--wide picture{flex:none;border-right:0}
+    .equip-card--wide .equip-img{height:auto;aspect-ratio:16/10;border-bottom:1px solid var(--line)}
+    .equip-card--wide .equip-info{padding:26px 26px 30px}}
 </style>
 </head>
 <body>
@@ -395,6 +407,22 @@
           <span class="enum">06</span>
           <h4>PCR Hood (UV-Cleaner Box)</h4>
           <p>Εξειδικευμένος θάλαμος εργασίας με σύστημα αποστείρωσης UV, σχεδιασμένος για την ασφαλή προετοιμασία δειγμάτων και αντιδραστηρίων μοριακής βιολογίας. Εξασφαλίζει καθαρό περιβάλλον εργασίας, ελαχιστοποιώντας τον κίνδυνο επιμόλυνσης και ενισχύοντας την αξιοπιστία των μοριακών αναλύσεων.</p>
+        </div>
+      </article>
+      <article class="equip-card equip-card--wide reveal">
+        <picture><source srcset="assets/biobase-bk-rs1a.webp" type="image/webp" /><img class="equip-img" src="assets/biobase-bk-rs1a.jpg" width="1200" height="750" alt="Biobase BK-RS1A Automated Tissue Stainer" loading="lazy" decoding="async" /></picture>
+        <div class="equip-info">
+          <span class="enum">07</span>
+          <h4>Biobase BK-RS1A Automated Tissue Stainer</h4>
+          <p>Αυτόματος βαφέας αντικειμενοφόρων πλακών υψηλής απόδοσης για το Κυτταρολογικό Εργαστήριο. Αυτοματοποιεί και τυποποιεί τη διαδικασία χρώσης (όπως η κλασική χρώση Αιματοξυλίνης – Ηωσίνης / H&amp;E), αντικαθιστώντας τις χειροκίνητες διαδικασίες και εξασφαλίζοντας σταθερά, επαναλήψιμα αποτελέσματα με εξοικονόμηση χρόνου.</p>
+          <ul class="equip-specs">
+            <li><b>Χωρητικότητα:</b> 14 δοχεία των 1200 ml, έως 72 αντικειμενοφόρες πλάκες ανά κύκλο.</li>
+            <li><b>Προσαρμόσιμα προγράμματα:</b> πλήρως παραμετροποιήσιμη μέθοδος και χρόνος χρώσης, από λίγα δευτερόλεπτα έως 59 λεπτά ανά σταθμό.</li>
+            <li><b>Έγχρωμη οθόνη αφής LCD:</b> παρακολούθηση της λειτουργίας σε πραγματικό χρόνο και εύκολη διαχείριση μενού.</li>
+            <li><b>Αυτόματο στέγνωμα:</b> έξυπνος έλεγχος θερμού αέρα για αποτελεσματικό στέγνωμα με μειωμένη κατανάλωση ενέργειας.</li>
+            <li><b>Προστασία &amp; ασφάλεια:</b> πλήρως κλειστή δομή με φίλτρο ενεργού άνθρακα, χωρίς έκλυση τοξικών αερίων στον χώρο του εργαστηρίου.</li>
+            <li><b>Μείωση επιμόλυνσης:</b> ρυθμιζόμενος χρόνος στάλαξης που ελαχιστοποιεί το carry-over μεταξύ δεξαμενών και παρατείνει τη ζωή των αντιδραστηρίων.</li>
+          </ul>
         </div>
       </article>
     </div>
